@@ -146,3 +146,8 @@ Temporary Items
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+.idea/other.xml
+build/
+dist/
+pandas_similarity.egg-info/
+pandas_similarity/__pycache__/
