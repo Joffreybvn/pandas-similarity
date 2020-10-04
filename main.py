@@ -2,12 +2,11 @@
 from pandas_similarity import IndexCalculator
 import pandas as pd
 
-
-raw = [
-    [1050, "Ixelles", 0, 340000],
-    [1050, "Ixelles", 0, 340000]
-]
-df = pd.DataFrame(raw, columns=['postal_code', 'city', 'property_type', 'price'])
+# Usage example
+df = pd.DataFrame([
+    [1050, "Ixelles", 0, 360000],
+    [1050, "Ixelles", 1, 340000]],
+    columns=['postal_code', 'city', 'property_type', 'price'])
 
 
 # Run the app

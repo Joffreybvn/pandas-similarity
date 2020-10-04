@@ -10,10 +10,11 @@ from pandas_similarity.normalizer import Normalizer
 
 class IndexCalculator:
 
-    def __init__(self, raw: pd.DataFrame):
+    def __init__(self, raw: pd.DataFrame, precision: int = 4):
         """Math the similarity index between entries of a given dataframe."""
 
         self.texts: List[str] = Normalizer(raw).get_data()
+        self.precision = precision
         self.index = None
 
     def get_index(self):
@@ -25,7 +26,7 @@ class IndexCalculator:
         if not self.index:
             self.count()
 
-        return self.index
+        return self.round_index(self.index)
 
     def count(self):
         """Math the similarity index between entries of a dataframe."""
@@ -54,3 +55,15 @@ class IndexCalculator:
 
         return cosine_similarity(vector1, vector2)[0][0]
 
+    def round_index(self, index):
+        """Normalize and round the index."""
+
+        # Avoid floating point error
+        if index > 1:
+            index = 1
+
+        if index < 0:
+            index = 0
+
+        # Round to the desired precision
+        return np.around(index, self.precision)
